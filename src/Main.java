@@ -97,29 +97,42 @@ public class Main {
     public static String decompressString(String compressedString) {
         String decompressedString = "";
         String countConsecutive = "";
-        String reserve_words = "";
+        String reserveWords = "";
         int total = 0;
-        for (int i = 0 ; i < compressedString.length(); i++){
-            if (!Character.isDigit(compressedString.charAt(i))) {
-                reserve_words += compressedString.charAt(i);
+        for (int i = 0; i < compressedString.length() ; i++){
+            if (!Character.isDigit(compressedString.charAt(i))){
+                reserveWords += compressedString.charAt(i);
             }
 
-            else if (Character.isDigit(compressedString.charAt(i)) &(compressedString.indexOf(compressedString.charAt(i)) != (compressedString.length() -1) &Character.isDigit(compressedString.charAt(i +1)))) {
-                countConsecutive += compressedString.charAt(i);
 
-            }
-            else {
-                countConsecutive += compressedString.charAt(i);
-                total = Integer.valueOf(countConsecutive);
 
-                for (int j = 0; j < total ; j++){
-                    decompressedString += reserve_words;
+            else{
+                countConsecutive += compressedString.charAt(i);
+                if (i+1 < (compressedString.length()) && Character.isDigit(compressedString.charAt(i+1))) {
+                    continue;
+
                 }
-                reserve_words = "";
-                countConsecutive = "";
+                else {
+                    total = Integer.valueOf(countConsecutive);
+
+                    for (int k = 0; k < total ; k++){
+                        decompressedString += reserveWords;
+                    }
+                    reserveWords = "";
+                    countConsecutive = "";
+                }
+
+
+
+
 
             }
+
         }
+
+
+
+
 
         return decompressedString;
     }
