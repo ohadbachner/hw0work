@@ -12,7 +12,6 @@ public class Main {
      */
     public static void gradeMessage(int grade) {
         switch (grade) {
-
             case 100:
                 System.out.println("Excellent");
                 break;
@@ -51,8 +50,10 @@ public class Main {
             case 71:
             case 70:
                 System.out.println("Good");
+                break;
             default:
                 System.out.println("OK");
+                break;
         }
     }
 
@@ -79,7 +80,6 @@ public class Main {
                 countConsecutive = 0;
             }
         }
-
         return compressedString;
     }
 
