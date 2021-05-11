@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Main {
     /**
      * Prints a message according to a given grade.
-     *
+     * <p>
      * It is guaranteed that the grade is within the range [0, 100].
      *
      * @param grade The grade
@@ -59,10 +59,10 @@ public class Main {
 
     /**
      * Compresses a given string.
-     *
+     * <p>
      * The compression process is done by replacing a sequence of identical consecutive characters
      * with that same character followed by the length of sequence.
-     *
+     * <p>
      * It is guaranteed that the string contains only letters (lowercase and uppercase).
      *
      * @param stringToCompress The string to compress
@@ -74,7 +74,8 @@ public class Main {
 
         for (int i = 0; i < stringToCompress.length(); i++) {
             countConsecutive++;
-            if (i + 1 >= stringToCompress.length() || stringToCompress.charAt(i) != stringToCompress.charAt(i + 1)) {
+            if (i + 1 >= stringToCompress.length() || stringToCompress.charAt(i)
+                    != stringToCompress.charAt(i + 1)) {
                 compressedString += (stringToCompress.charAt(i));
                 compressedString += (String.valueOf(countConsecutive));
                 countConsecutive = 0;
@@ -85,10 +86,10 @@ public class Main {
 
     /**
      * Decompresses a given string.
-     *
+     * <p>
      * The decompression process is done by duplicating each sequence of characters
      * according to the number which appears after the sequence.
-     *
+     * <p>
      * It is guaranteed that the string is a legal compressed string.
      *
      * @param compressedString The string to decompress
@@ -97,25 +98,23 @@ public class Main {
     public static String decompressString(String compressedString) {
         String decompressedString = "";
         String countConsecutive = "";
+        // reserveWords is all the chars they are not digit
         String reserveWords = "";
         int total = 0;
-        for (int i = 0; i < compressedString.length() ; i++){
-            if (!Character.isDigit(compressedString.charAt(i))){
+        for (int i = 0; i < compressedString.length(); i++) {
+            if (!Character.isDigit(compressedString.charAt(i))) {
                 reserveWords += compressedString.charAt(i);
-            }
-
-
-
-            else{
+            } else {
                 countConsecutive += compressedString.charAt(i);
-                if (i+1 < (compressedString.length()) && Character.isDigit(compressedString.charAt(i+1))) {
+                if (i + 1 < (compressedString.length()) &&
+                        Character.isDigit(compressedString.charAt(i + 1))) {
                     continue;
 
-                }
-                else {
+                } else {
+                    // total is the countConsecutive in Integer casting
                     total = Integer.valueOf(countConsecutive);
 
-                    for (int k = 0; k < total ; k++){
+                    for (int k = 0; k < total; k++) {
                         decompressedString += reserveWords;
                     }
                     reserveWords = "";
@@ -123,15 +122,9 @@ public class Main {
                 }
 
 
-
-
-
             }
 
         }
-
-
-
 
 
         return decompressedString;
